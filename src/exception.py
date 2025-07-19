@@ -1,5 +1,5 @@
 import sys
-import logging
+from logger import logging
 
 """
 Create custom error message.
