@@ -4,6 +4,7 @@ import sys
 import numpy as np
 import pandas as pd
 from sklearn.metrics import r2_score
+from sklearn.model_selection import GridSearchCV
 import dill
 from src.exception import CustomException
 
@@ -20,7 +21,7 @@ def save_object(file_path, obj):
     except Exception as e:
         raise CustomException(e, sys)
 
-def evaluate_model(X_train, y_train, X_test, y_test, models):
+def evaluate_model(X_train, y_train, X_test, y_test, models, params):
     # Returns a report of the r2_score for each ML model in models
     try:
         report = {}
@@ -28,8 +29,15 @@ def evaluate_model(X_train, y_train, X_test, y_test, models):
         # Key each model to its r2_score
         for i in range(len(list(models))):
             model = list(models.values())[i]
+            param = params[list(models.keys())[i]]
 
+            gs = GridSearchCV(model, param, cv=3)
+            gs.fit(X_train, y_train)
+
+            model.set_params(**gs.best_params_)
             model.fit(X_train, y_train)
+
+            #model.fit(X_train, y_train)
 
             y_train_pred = model.predict(X_train)
 
