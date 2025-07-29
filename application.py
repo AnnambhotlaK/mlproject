@@ -15,6 +15,7 @@ def index():
     return render_template('index.html')
 
 ## Route for GET or POST
+# updated comment
 @app.route('/predictdata', methods=['GET', 'POST'])
 def predict_datapoint():
     # User requested the /predictdata (GET)
