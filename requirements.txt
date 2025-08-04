@@ -1,11 +1,22 @@
+# scraping
+requests
+bs4
+seleniumbase
+
+# data ingestion, transformation, visualization
 pandas
 numpy
-seaborn
 matplotlib
+
+# ml modeling and training
 scikit-learn
 catboost
 xgboost
+
+# pkl generation
 dill
+
+# frontend
 Flask
 
-#-e .
+-e .
