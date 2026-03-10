@@ -29,7 +29,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Entered initiate_data_ingestion")
         try:
-            df=pd.read_csv('notebook\data\stud.csv')
+            df=pd.read_csv('artifacts/wta_matches.csv')
             logging.info("Read dataset as a DataFrame")
 
             # Initialize directories for the three CSVs
