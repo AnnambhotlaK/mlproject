@@ -29,8 +29,13 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Entered initiate_data_ingestion")
         try:
-            df=pd.read_csv('artifacts/wta_matches.csv')
+            df = pd.read_csv('artifacts/wta_matches.csv')
             logging.info("Read dataset as a DataFrame")
+
+            # Before splitting: drop columns, rename winner/loser, scramble winner/loser
+            df = self.drop_columns(df)
+            #rename_winner_loser()
+            #scramble_winner_loser()
 
             # Initialize directories for the three CSVs
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
@@ -50,6 +55,27 @@ class DataIngestion:
             )
         except Exception as e:
             raise CustomException(e, sys)
+    
+    # helper function: drop unnecessary columns
+    def drop_columns(self, df):
+        # define list of columns to drop based on EDA and model training
+        columns_to_drop = ['tourney_name', 'surface', 'draw_size', 'tourney_level', 'tourney_date', 
+                           'winner_hand', 'loser_hand', 'winner_ht', 'loser_ht', 'winner_ioc', 'loser_ioc',
+                           'match_num', 'best_of', 'round', 'minutes', 'score', 'winner_entry', 'loser_entry', 
+                           'winner_rank', 'loser_rank', 'w_bpSaved', 'l_bpSaved']
+        df = df.drop(columns=columns_to_drop)
+        # also drop columns with nan values
+        df.dropna(axis=1, inplace=True)
+        return df
+
+    # helper function: rename winner/loser columns to player1/player2
+    def rename_winner_loser(self, df):
+        pass
+
+    # helper function: scramble winner/loser columns to remove bias
+    def scramble_winner_loser(self, df):
+        pass
+
         
 if __name__ == "__main__":
     obj = DataIngestion()
