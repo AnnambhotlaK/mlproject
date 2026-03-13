@@ -26,22 +26,29 @@ class DataTransformation:
         Function responsible for data transformation via pipelines
         '''
         try:
-            numerical_columns = ['draw_size', 'tourney_date', 'match_num', 'winner_id', 
-                                 'winner_seed', 'winner_ht', 'winner_age', 'loser_id', 
-                                 'loser_seed', 'loser_ht', 'loser_age', 'best_of', 'minutes', 
-                                 'w_ace', 'w_df', 'w_svpt', 'w_1stIn', 'w_1stWon', 'w_2ndWon', 
-                                 'w_SvGms', 'w_bpSaved', 'w_bpFaced', 'l_ace', 'l_df', 'l_svpt', 
-                                 'l_1stIn', 'l_1stWon', 'l_2ndWon', 'l_SvGms', 'l_bpSaved', 'l_bpFaced', 
-                                 'winner_rank', 'winner_rank_points', 'loser_rank', 'loser_rank_points'
+            numerical_columns = [
+                                    'p1_id',
+                                    'p2_id',
+                                    'p1_ace',
+                                    'p1_df',
+                                    'p1_svpt',
+                                    'p1_1stIn',
+                                    'p1_1stWon',
+                                    'p1_2ndWon',
+                                    'p1_SvGms',
+                                    'p1_bpFaced',
+                                    'p2_ace',
+                                    'p2_df',
+                                    'p2_svpt',
+                                    'p2_1stIn',
+                                    'p2_1stWon',
+                                    'p2_2ndWon',
+                                    'p2_SvGms',
+                                    'p2_bpFaced',
+                                    'match_winner'
                                 ]
-            categorical_columns = [
-                "gender",
-                "race_ethnicity",
-                "parental_level_of_education",
-                "lunch",
-                "test_preparation_course",
-            ]
 
+            
             num_pipeline = Pipeline(
                 steps=[
                     # Imputer will replace nulls with median of column
@@ -52,6 +59,7 @@ class DataTransformation:
             )
             logging.info("Numerical column pipeline constructed")
 
+            '''
             cat_pipeline = Pipeline(
                 steps=[
                     # Imputer will replace nulls with most frequent_value
@@ -62,12 +70,13 @@ class DataTransformation:
                 ]
             )
             logging.info("Categorical column pipeline constructed")
+            '''
 
             # Combine pipelines on preprocessor with ColumnTransformer
             preprocessor = ColumnTransformer(
                 [
                     ("num_pipeline", num_pipeline, numerical_columns),
-                    ("cat_pipeline", cat_pipeline, categorical_columns)
+                    #("cat_pipeline", cat_pipeline, categorical_columns)
                 ]
             )
             return preprocessor
@@ -87,9 +96,29 @@ class DataTransformation:
             logging.info("Obtaining preprocessing object")
             preprocessing_obj = self.get_data_transformer_object()
 
-            # Model will predict student's math_score
-            target_column_name = "math_score"
-            numerical_columns = ["writing_score", "reading_score"]
+            # Model will predict match winner
+            target_column_name = "match_winner"
+            numerical_columns = [
+                                    'p1_id',
+                                    'p2_id',
+                                    'p1_ace',
+                                    'p1_df',
+                                    'p1_svpt',
+                                    'p1_1stIn',
+                                    'p1_1stWon',
+                                    'p1_2ndWon',
+                                    'p1_SvGms',
+                                    'p1_bpFaced',
+                                    'p2_ace',
+                                    'p2_df',
+                                    'p2_svpt',
+                                    'p2_1stIn',
+                                    'p2_1stWon',
+                                    'p2_2ndWon',
+                                    'p2_SvGms',
+                                    'p2_bpFaced',
+                                    'match_winner'
+                                ]
 
             input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
             target_feature_train_df = train_df[target_column_name]
@@ -117,6 +146,7 @@ class DataTransformation:
                 test_arr,
                 self.data_transformation_config.preprocessor_obj_file_path,
             )
+        
         except Exception as e:
             raise CustomException(e, sys)
 
