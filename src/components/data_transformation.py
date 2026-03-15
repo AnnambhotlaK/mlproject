@@ -45,7 +45,6 @@ class DataTransformation:
                                     'p2_2ndWon',
                                     'p2_SvGms',
                                     'p2_bpFaced',
-                                    'match_winner'
                                 ]
 
             
