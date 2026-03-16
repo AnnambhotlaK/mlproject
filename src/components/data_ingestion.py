@@ -31,12 +31,14 @@ class DataIngestion:
         logging.info("Entered initiate_data_ingestion")
         try:
             df = pd.read_csv('artifacts/wta_matches.csv')
+            # Make sure to define match_winner column before any transformations
+            df['match_winner'] = 0 
             logging.info("Read dataset as a DataFrame")
 
             # Before splitting: drop columns, rename winner/loser, scramble winner/loser
-            df = self.drop_columns(df)
-            df = self.rename_winner_loser(df)
-            df = self.scramble_winner_loser(df)
+            #df = self.drop_columns(df)
+            #df = self.rename_winner_loser(df)
+            #df = self.scramble_winner_loser(df)
 
             # Initialize directories for the three CSVs
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)

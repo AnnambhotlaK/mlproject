@@ -26,27 +26,19 @@ class DataTransformation:
         Function responsible for data transformation via pipelines
         '''
         try:
-            numerical_columns = [
-                                    'p1_id',
-                                    'p2_id',
-                                    'p1_ace',
-                                    'p1_df',
-                                    'p1_svpt',
-                                    'p1_1stIn',
-                                    'p1_1stWon',
-                                    'p1_2ndWon',
-                                    'p1_SvGms',
-                                    'p1_bpFaced',
-                                    'p2_ace',
-                                    'p2_df',
-                                    'p2_svpt',
-                                    'p2_1stIn',
-                                    'p2_1stWon',
-                                    'p2_2ndWon',
-                                    'p2_SvGms',
-                                    'p2_bpFaced',
-                                ]
-
+            # Define numerical and categorical columsns for pipeline construction
+            numerical_columns = ['draw_size', 'tourney_date', 'match_num', 'winner_id', 
+                                 'winner_seed', 'winner_ht', 'winner_age', 'loser_id', 
+                                 'loser_seed', 'loser_ht', 'loser_age', 'best_of', 'minutes', 
+                                 'w_ace', 'w_df', 'w_svpt', 'w_1stIn', 'w_1stWon', 'w_2ndWon', 
+                                 'w_SvGms', 'w_bpSaved', 'w_bpFaced', 'l_ace', 'l_df', 'l_svpt', 
+                                 'l_1stIn', 'l_1stWon', 'l_2ndWon', 'l_SvGms', 'l_bpSaved', 'l_bpFaced', 
+                                 'winner_rank', 'winner_rank_points', 'loser_rank', 'loser_rank_points']
+            
+            categorical_columns = ['tourney_id', 'tourney_name', 'surface', 'tourney_level', 
+                                   'winner_entry', 'winner_name', 'winner_hand', 'winner_ioc', 
+                                   'loser_entry', 'loser_name', 'loser_hand', 
+                                   'loser_ioc', 'score', 'round']
             
             num_pipeline = Pipeline(
                 steps=[
@@ -58,24 +50,23 @@ class DataTransformation:
             )
             logging.info("Numerical column pipeline constructed")
 
-            '''
             cat_pipeline = Pipeline(
                 steps=[
                     # Imputer will replace nulls with most frequent_value
                     ("imputer", SimpleImputer(strategy="most_frequent")),
                     # OH encoder will replace each categorical with numerics
                     ("one_hot_encoder", OneHotEncoder()),
+                    # Scaler will scale data to unit variance for standardization
                     ("scaler", StandardScaler(with_mean=False))
                 ]
             )
             logging.info("Categorical column pipeline constructed")
-            '''
 
             # Combine pipelines on preprocessor with ColumnTransformer
             preprocessor = ColumnTransformer(
                 [
                     ("num_pipeline", num_pipeline, numerical_columns),
-                    #("cat_pipeline", cat_pipeline, categorical_columns)
+                    ("cat_pipeline", cat_pipeline, categorical_columns)
                 ]
             )
             return preprocessor
@@ -92,32 +83,17 @@ class DataTransformation:
             test_df = pd.read_csv(test_path)
             logging.info("Finished reading train and test data")
 
+            # Before splitting: drop columns, rename winner/loser, scramble winner/loser
+            #train_df, test_df = self.drop_columns(df), self.drop_columns(df)
+            #train_df, test_df = self.rename_winner_loser(train_df), self.rename_winner_loser(test_df)
+            #train_df, test_df = self.scramble_winner_loser(train_df), self.scramble_winner_loser(test_df)
+
             logging.info("Obtaining preprocessing object")
             preprocessing_obj = self.get_data_transformer_object()
 
             # Model will predict match winner
             target_column_name = "match_winner"
-            numerical_columns = [
-                                    'p1_id',
-                                    'p2_id',
-                                    'p1_ace',
-                                    'p1_df',
-                                    'p1_svpt',
-                                    'p1_1stIn',
-                                    'p1_1stWon',
-                                    'p1_2ndWon',
-                                    'p1_SvGms',
-                                    'p1_bpFaced',
-                                    'p2_ace',
-                                    'p2_df',
-                                    'p2_svpt',
-                                    'p2_1stIn',
-                                    'p2_1stWon',
-                                    'p2_2ndWon',
-                                    'p2_SvGms',
-                                    'p2_bpFaced',
-                                    'match_winner'
-                                ]
+            # define numerical/categorical columns here?
 
             input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
             target_feature_train_df = train_df[target_column_name]
