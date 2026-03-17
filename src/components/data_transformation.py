@@ -1,4 +1,5 @@
 import os
+import random
 import sys
 from dataclasses import dataclass
 
@@ -83,10 +84,10 @@ class DataTransformation:
             test_df = pd.read_csv(test_path)
             logging.info("Finished reading train and test data")
 
-            # Before splitting: drop columns, rename winner/loser, scramble winner/loser
-            #train_df, test_df = self.drop_columns(df), self.drop_columns(df)
-            #train_df, test_df = self.rename_winner_loser(train_df), self.rename_winner_loser(test_df)
-            #train_df, test_df = self.scramble_winner_loser(train_df), self.scramble_winner_loser(test_df)
+            # On train and test dfs, drop columns, rename winner/loser, scramble winner/loser
+            train_df, test_df = self.drop_columns(train_df), self.drop_columns(test_df)
+            train_df, test_df = self.rename_winner_loser(train_df), self.rename_winner_loser(test_df)
+            train_df, test_df = self.scramble_winner_loser(train_df), self.scramble_winner_loser(test_df)
 
             logging.info("Obtaining preprocessing object")
             preprocessing_obj = self.get_data_transformer_object()
@@ -124,4 +125,54 @@ class DataTransformation:
         
         except Exception as e:
             raise CustomException(e, sys)
+    
+    # helper function: drop unnecessary columns
+    def drop_columns(self, df):
+        # define list of columns to drop based on EDA and model training
+        # more columns dropped from EDA
+        '''
+        columns_to_drop = ['tourney_name', 'surface', 'draw_size', 'tourney_level', 'tourney_date', 
+                           'winner_hand', 'loser_hand', 'winner_ht', 'loser_ht', 'winner_ioc', 'loser_ioc',
+                           'match_num', 'best_of', 'round', 'minutes', 'score', 'winner_entry', 'loser_entry', 
+                           'winner_rank', 'loser_rank', 'w_bpSaved', 'l_bpSaved']
+        '''
+        # less columns dropped for model training
+        columns_to_drop = ['tourney_name', 'winner_hand', 'loser_hand', 'winner_ioc', 'loser_ioc', 'match_num', 'minutes', 'score']
+        
+        df = df.drop(columns=columns_to_drop)
+        # also drop rows with nan values
+        df.dropna()
+        return df
+    
+    # helper function: rename winner/loser columns to player1/player2
+    def rename_winner_loser(self, df):
+        for col in df.columns:
+            if 'winner' in col and col != 'match_winner':
+                df.rename(columns={col: col.replace('winner', 'p1')}, inplace=True)
+            elif col[0] == 'w' and col != 'winner_rank' and col != 'winner_rank_points':
+                df.rename(columns={col: col.replace('w', 'p1')}, inplace=True)
+            elif 'loser' in col:
+                df.rename(columns={col: col.replace('loser', 'p2')}, inplace=True)
+            elif col[0] == 'l' and col != 'loser_rank' and col != 'loser_rank_points':
+                df.rename(columns={col: col.replace('l', 'p2')}, inplace=True)
+        return df
+    
+    # helper function: scramble winner/loser columns to remove bias
+    def scramble_winner_loser(self, df):
+        cols1 = [c for c in df.columns if 'p1' in c]
+        cols2 = [c for c in df.columns if 'p2' in c]
+        cols2_targ = [c.replace('p1', 'p2') for c in cols1]
+
+        # copy df for scrambling
+        copy = df.copy()
+
+        # generate len(df.index) / 2 random indices. for those observations, swap columns and set match_winner to 1
+        maskIdx = [random.randint(0, len(df.index) - 1) for i in range((int)(len(df.index) / 2))]
+        df.loc[maskIdx, cols1] = copy.loc[maskIdx, cols2_targ].values
+        df.loc[maskIdx, cols2_targ] = copy.loc[maskIdx, cols1].values
+        df.loc[maskIdx, 'match_winner'] = 1
+
+        return df
+    
+
 
