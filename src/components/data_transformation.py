@@ -30,18 +30,10 @@ class DataTransformation:
             # Define numerical and categorical columsns for pipeline construction
             # NEED TO UPDATE THESE TO USE COLUMN NAMES AFTER SOME PREPROCESSING!
             # ALTERNATIVELY, MOVE THAT PREPROCESSING TO A LATER STEP
-            numerical_columns = ['draw_size', 'tourney_date', 'match_num', 'winner_id', 
-                                 'winner_seed', 'winner_ht', 'winner_age', 'loser_id', 
-                                 'loser_seed', 'loser_ht', 'loser_age', 'best_of', 'minutes', 
-                                 'w_ace', 'w_df', 'w_svpt', 'w_1stIn', 'w_1stWon', 'w_2ndWon', 
-                                 'w_SvGms', 'w_bpSaved', 'w_bpFaced', 'l_ace', 'l_df', 'l_svpt', 
-                                 'l_1stIn', 'l_1stWon', 'l_2ndWon', 'l_SvGms', 'l_bpSaved', 'l_bpFaced', 
-                                 'winner_rank', 'winner_rank_points', 'loser_rank', 'loser_rank_points']
+
+            numerical_columns = ['draw_size', 'tourney_date', 'p1_id', 'p1_ht', 'p1_age', 'p2_id', 'p2_ht', 'p2_age', 'best_of', 'p1_ace', 'p1_df', 'p1_svpt', 'p1_1stIn', 'p1_1stWon', 'p1_2ndWon', 'p1_SvGms', 'p1_bpSaved', 'p1_bpFaced', 'p2_ace', 'p2_df', 'p2_svpt', 'p2_1stIn', 'p2_1stWon', 'p2_2ndWon', 'p2_SvGms', 'p2_bpSaved', 'p2_bpFaced', 'p1_rank', 'p1_rank_points', 'p2_rank', 'p2_rank_points']
             
-            categorical_columns = ['tourney_id', 'tourney_name', 'surface', 'tourney_level', 
-                                   'winner_entry', 'winner_name', 'winner_hand', 'winner_ioc', 
-                                   'loser_entry', 'loser_name', 'loser_hand', 
-                                   'loser_ioc', 'score', 'round']
+            categorical_columns = ['tourney_id', 'surface', 'tourney_level', 'p1_seed', 'p1_entry', 'p1_name', 'p2_seed', 'p2_entry', 'p2_name', 'round']
             
             num_pipeline = Pipeline(
                 steps=[
@@ -97,7 +89,6 @@ class DataTransformation:
             # Model will predict match winner
             target_column_name = "match_winner"
             # define numerical/categorical columns here?
-            
 
             input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
             target_feature_train_df = train_df[target_column_name]
@@ -132,19 +123,8 @@ class DataTransformation:
     # helper function: drop unnecessary columns
     def drop_columns(self, df):
         # define list of columns to drop based on EDA and model training
-        # more columns dropped from EDA
-        '''
-        columns_to_drop = ['tourney_name', 'surface', 'draw_size', 'tourney_level', 'tourney_date', 
-                           'winner_hand', 'loser_hand', 'winner_ht', 'loser_ht', 'winner_ioc', 'loser_ioc',
-                           'match_num', 'best_of', 'round', 'minutes', 'score', 'winner_entry', 'loser_entry', 
-                           'winner_rank', 'loser_rank', 'w_bpSaved', 'l_bpSaved']
-        '''
-        # less columns dropped for model training
         columns_to_drop = ['tourney_name', 'winner_hand', 'loser_hand', 'winner_ioc', 'loser_ioc', 'match_num', 'minutes', 'score']
-        
         df = df.drop(columns=columns_to_drop)
-        # also drop rows with nan values
-        #df.dropna()
         return df
     
     # helper function: rename winner/loser columns to player1/player2
