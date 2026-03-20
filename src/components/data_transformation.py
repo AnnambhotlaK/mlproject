@@ -28,6 +28,8 @@ class DataTransformation:
         '''
         try:
             # Define numerical and categorical columsns for pipeline construction
+            # NEED TO UPDATE THESE TO USE COLUMN NAMES AFTER SOME PREPROCESSING!
+            # ALTERNATIVELY, MOVE THAT PREPROCESSING TO A LATER STEP
             numerical_columns = ['draw_size', 'tourney_date', 'match_num', 'winner_id', 
                                  'winner_seed', 'winner_ht', 'winner_age', 'loser_id', 
                                  'loser_seed', 'loser_ht', 'loser_age', 'best_of', 'minutes', 
@@ -95,6 +97,7 @@ class DataTransformation:
             # Model will predict match winner
             target_column_name = "match_winner"
             # define numerical/categorical columns here?
+            
 
             input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
             target_feature_train_df = train_df[target_column_name]
@@ -141,7 +144,7 @@ class DataTransformation:
         
         df = df.drop(columns=columns_to_drop)
         # also drop rows with nan values
-        df.dropna()
+        #df.dropna()
         return df
     
     # helper function: rename winner/loser columns to player1/player2
