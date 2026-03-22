@@ -33,7 +33,7 @@ class DataTransformation:
 
             numerical_columns = ['draw_size', 'tourney_date', 'p1_id', 'p1_ht', 'p1_age', 'p2_id', 'p2_ht', 'p2_age', 'best_of', 'p1_ace', 'p1_df', 'p1_svpt', 'p1_1stIn', 'p1_1stWon', 'p1_2ndWon', 'p1_SvGms', 'p1_bpSaved', 'p1_bpFaced', 'p2_ace', 'p2_df', 'p2_svpt', 'p2_1stIn', 'p2_1stWon', 'p2_2ndWon', 'p2_SvGms', 'p2_bpSaved', 'p2_bpFaced', 'p1_rank', 'p1_rank_points', 'p2_rank', 'p2_rank_points']
             
-            categorical_columns = ['tourney_id', 'surface', 'tourney_level', 'p1_seed', 'p1_entry', 'p1_name', 'p2_seed', 'p2_entry', 'p2_name', 'round']
+            categorical_columns = ['tourney_id', 'surface', 'tourney_level', 'p1_seed', 'p2_seed', 'round']
             
             num_pipeline = Pipeline(
                 steps=[
@@ -83,6 +83,8 @@ class DataTransformation:
             train_df, test_df = self.rename_winner_loser(train_df), self.rename_winner_loser(test_df)
             train_df, test_df = self.scramble_winner_loser(train_df), self.scramble_winner_loser(test_df)
 
+            print(train_df.head())
+
             logging.info("Obtaining preprocessing object")
             preprocessing_obj = self.get_data_transformer_object()
 
@@ -123,7 +125,7 @@ class DataTransformation:
     # helper function: drop unnecessary columns
     def drop_columns(self, df):
         # define list of columns to drop based on EDA and model training
-        columns_to_drop = ['tourney_name', 'winner_hand', 'loser_hand', 'winner_ioc', 'loser_ioc', 'match_num', 'minutes', 'score']
+        columns_to_drop = ['tourney_name', 'winner_name', 'loser_name', 'winner_hand', 'loser_hand', 'winner_ioc', 'loser_ioc', 'winner_entry', 'loser_entry', 'match_num', 'minutes', 'score']
         df = df.drop(columns=columns_to_drop)
         return df
     
