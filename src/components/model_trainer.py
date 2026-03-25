@@ -24,7 +24,7 @@ from src.utils import save_object, evaluate_model
 @dataclass
 class ModelTrainerConfig:
     trained_model_file_path = os.path.join("artifacts", "model.pkl")
-
+    
 
 class ModelTrainer:
     def __init__(self):
@@ -107,13 +107,15 @@ class ModelTrainer:
                 params = params
             )
 
+            print("generated model report")
+
             best_model_score = max(sorted(model_report.values()))
             best_model_name = list(model_report.keys())[
                 list(model_report.values()).index(best_model_score)
             ]
             best_model = models[best_model_name]
 
-            # If best model is worse than 60% accuracy
+            # If best model is worse than 60% accuracy -> no good model found
             if best_model_score < 0.6:
                 raise CustomException("No best model found")
             

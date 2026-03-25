@@ -103,10 +103,11 @@ class DataTransformation:
             input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 
-            print(input_feature_train_arr.shape, input_feature_test_arr.shape)
+            #print(input_feature_train_arr.shape, input_feature_test_arr.shape)
             # Append array of target_feature as column vector to end of 2d array of input_feature
             #train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
             #test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+            
             if not isinstance(input_feature_train_arr, np.ndarray):
                 input_feature_train_arr = input_feature_train_arr.toarray()
                 input_feature_test_arr = input_feature_test_arr.toarray()
