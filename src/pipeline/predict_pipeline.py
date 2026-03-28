@@ -25,23 +25,93 @@ class PredictPipeline:
 
 # CustomData maps inputs from frontend (app.py, html) to the backend (components) for predictions
 class CustomData:
+    # NEW CUSTOM DATA FIELDS:
+    '''
+    ['tourney_id', 'surface', 'draw_size', 'tourney_level', 'tourney_date',
+       'p1_id', 'p1_seed', 'p1_ht', 'p1_age', 'p2_id', 'p2_seed', 'p2_ht',
+       'p2_age', 'best_of', 'round', 'p1_ace', 'p1_df', 'p1_svpt', 'p1_1stIn',
+       'p1_1stWon', 'p1_2ndWon', 'p1_SvGms', 'p1_bpSaved', 'p1_bpFaced',
+       'p2_ace', 'p2_df', 'p2_svpt', 'p2_1stIn', 'p2_1stWon', 'p2_2ndWon',
+       'p2_SvGms', 'p2_bpSaved', 'p2_bpFaced', 'p1_rank', 'p1_rank_points',
+       'p2_rank', 'p2_rank_points']
+    '''
     def __init__(
         self,
-        gender: str,
-        race_ethnicity: str,
-        parental_level_of_education,
-        lunch: str,
-        test_preparation_course: str,
-        reading_score: int,
-        writing_score: int
+        tourney_id: str,
+        surface: str,
+        draw_size: int,
+        tourney_level: str,
+        tourney_date: int,
+        p1_id: int,
+        p1_seed: str,
+        p1_ht: int,
+        p1_age: int,
+        p2_id: int,
+        p2_seed: str,
+        p2_ht: int,
+        p2_age: int,
+        best_of: int,
+        round: str,
+        p1_ace: int,
+        p1_df: int,
+        p1_svpt: int,
+        p1_1stIn: int,
+        p1_1stWon: int,
+        p1_2ndWon: int,
+        p1_SvGms: int,
+        p1_bpSaved: int,
+        p1_bpFaced: int,
+        p2_ace: int,
+        p2_df: int,
+        p2_svpt: int,
+        p2_1stIn: int,
+        p2_1stWon: int,
+        p2_2ndWon: int,
+        p2_SvGms: int,
+        p2_bpSaved: int,
+        p2_bpFaced: int,
+        p1_rank: int,
+        p1_rank_points: int,
+        p2_rank: int,
+        p2_rank_points: int
     ):
-        self.gender = gender
-        self.race_ethnicity = race_ethnicity
-        self.parental_level_of_education = parental_level_of_education
-        self.lunch = lunch
-        self.test_preparation_course = test_preparation_course
-        self.reading_score = reading_score
-        self.writing_score = writing_score
+        self.tourney_id = tourney_id
+        self.surface = surface
+        self.draw_size = draw_size
+        self.tourney_level = tourney_level
+        self.tourney_date = tourney_date
+        self.p1_id = p1_id
+        self.p1_seed = p1_seed
+        self.p1_ht = p1_ht
+        self.p1_age = p1_age
+        self.p2_id = p2_id
+        self.p2_seed = p2_seed
+        self.p2_ht = p2_ht
+        self.p2_age = p2_age
+        self.best_of = best_of
+        self.round = round
+        self.p1_ace = p1_ace
+        self.p1_df = p1_df
+        self.p1_svpt = p1_svpt
+        self.p1_1stIn = p1_1stIn
+        self.p1_1stWon = p1_1stWon
+        self.p1_2ndWon = p1_2ndWon
+        self.p1_SvGms = p1_SvGms
+        self.p1_bpSaved = p1_bpSaved
+        self.p1_bpFaced = p1_bpFaced
+        self.p2_ace = p2_ace
+        self.p2_df = p2_df
+        self.p2_svpt = p2_svpt
+        self.p2_1stIn = p2_1stIn
+        self.p2_1stWon = p2_1stWon
+        self.p2_2ndWon = p2_2ndWon
+        self.p2_SvGms = p2_SvGms
+        self.p2_bpSaved = p2_bpSaved
+        self.p2_bpFaced = p2_bpFaced
+        self.p1_rank = p1_rank
+        self.p1_rank_points = p1_rank_points
+        self.p2_rank = p2_rank
+        self.p2_rank_points = p2_rank_points
 
     # Reformates custom data as Pandas DataFrame for backend
     def get_data_as_dataframe(self):
