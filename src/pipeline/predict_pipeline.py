@@ -113,17 +113,47 @@ class CustomData:
         self.p2_rank = p2_rank
         self.p2_rank_points = p2_rank_points
 
-    # Reformates custom data as Pandas DataFrame for backend
+    # Reformats custom data as Pandas DataFrame for backend
     def get_data_as_dataframe(self):
         try:
             custom_data_input_dict = {
-                "gender": [self.gender],
-                "race_ethnicity": [self.race_ethnicity],
-                "parental_level_of_education": [self.parental_level_of_education],
-                "lunch": [self.lunch],
-                "test_preparation_course": [self.test_preparation_course],
-                "reading_score": [self.reading_score],
-                "writing_score": [self.writing_score]
+                "tourney_id": [self.tourney_id],
+                "surface": [self.surface],
+                "draw_size": [self.draw_size],
+                "tourney_level": [self.tourney_level],
+                "tourney_date": [self.tourney_date],
+                "p1_id": [self.p1_id],
+                "p1_seed": [self.p1_seed],
+                "p1_ht": [self.p1_ht],
+                "p1_age": [self.p1_age],
+                "p2_id": [self.p2_id],
+                "p2_seed": [self.p2_seed],
+                "p2_ht": [self.p2_ht],
+                "p2_age": [self.p2_age],
+                "best_of": [self.best_of],
+                "round": [self.round],
+                "p1_ace": [self.p1_ace],
+                "p1_df": [self.p1_df],
+                "p1_svpt": [self.p1_svpt],
+                "p1_1stIn": [self.p1_1stIn],
+                "p1_1stWon": [self.p1_1stWon],
+                "p1_2ndWon": [self.p1_2ndWon],
+                "p1_SvGms": [self.p1_SvGms],
+                "p1_bpSaved": [self.p1_bpSaved],
+                "p1_bpFaced": [self.p1_bpFaced],
+                "p2_ace": [self.p2_ace],
+                "p2_df": [self.p2_df],
+                "p2_svpt": [self.p2_svpt],
+                "p2_1stIn": [self.p2_1stIn],
+                "p2_1stWon": [self.p2_1stWon],
+                "p2_2ndWon": [self.p2_2ndWon],
+                "p2_SvGms": [self.p2_SvGms],
+                "p2_bpSaved": [self.p2_bpSaved],
+                "p2_bpFaced": [self.p2_bpFaced],
+                "p1_rank": [self.p1_rank],
+                "p1_rank_points": [self.p1_rank_points],
+                "p2_rank": [self.p2_rank],
+                "p2_rank_points": [self.p2_rank_points]
             }
             return pd.DataFrame(custom_data_input_dict)
         except Exception as e:
