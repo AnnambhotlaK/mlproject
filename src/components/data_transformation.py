@@ -83,8 +83,7 @@ class DataTransformation:
             train_df, test_df = self.rename_winner_loser(train_df), self.rename_winner_loser(test_df)
             train_df, test_df = self.scramble_winner_loser(train_df), self.scramble_winner_loser(test_df)
 
-            print(train_df.columns)
-            print(test_df.columns)
+            print(train_df.head())
 
             logging.info("Obtaining preprocessing object")
             preprocessing_obj = self.get_data_transformer_object()
