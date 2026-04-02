@@ -5,49 +5,55 @@
    
        <form action="{{ url_for('predict_datapoint')}}" method="post">
 
-        <!--TOURNEY_ID-->
+        <!--TOURNEY_ID (+ SURFACE + DRAW_SIZE + TOURNEY_LEVEL + TOURNEY_DATE)-->
         <div class="mb-3">
             <label class="form-label">Tournament ID</label>
             <input class="form-control" type="number" name="tourney_id"
                 min='0' max='100' />
         </div>
 
-        <!--SURFACE-->
+        <!--P1_SEED-->
         <div class="mb-3">
-            <label class="form-label">Surface</label>
-            <select class="form-control" name="surface" placeholder="Select Surface" required>
-                <option class="placeholder" selected disabled value="">Select Surface</option>
-                <option value="hard">
-                    Hard
-                </option>
-                <option value="clay">
-                    Clay
-                </option>
-                <option value="grass">
-                    Grass
-                </option>
-            </select>
+            <label class="form-label">Player 1 Seed</label>
+            <input class="form-control" type="number" name="tourney_id"
+                min='1' max='32' />
         </div>
 
-        <!--DRAW_SIZE-->
+        <!--P1_HT-->
         <div class="mb-3">
-            <label class="form-label">Draw Size</label>
-            <select class="form-control" name="draw_size" placeholder="Select Draw Size" required>
-                <option class="placeholder" selected disabled value="">Select Draw Size</option>
-                <option value="8">
-                    8
-                </option>
-                <option value="32">
-                    32
-                </option>
-                <option value="64">
-                    64
-                </option>
-                <option value="128">
-                    128
-                </option>
-            </select>
+            <label class="form-label">Player 1 Height (cm)</label>
+            <input class="form-control" type="number" name="p1_ht"
+                min='100' max='250' />
         </div>
+
+        <!--P1_AGE-->
+        <div class="mb-3">
+            <label class="form-label">Player 1 Age</label>
+            <input class="form-control" type="number" name="p1_ht"
+                min='15' max='45' />
+        </div>
+
+        <!--P2_SEED-->
+        <div class="mb-3">
+            <label class="form-label">Player 2 Seed</label>
+            <input class="form-control" type="number" name="tourney_id"
+                min='1' max='32' />
+        </div>
+
+        <!--P2_HT-->
+        <div class="mb-3">
+            <label class="form-label">Player 2 Height (cm)</label>
+            <input class="form-control" type="number" name="p1_ht"
+                min='100' max='250' />
+        </div>
+
+        <!--P2_AGE-->
+        <div class="mb-3">
+            <label class="form-label">Player 2 Age</label>
+            <input class="form-control" type="number" name="p1_ht"
+                min='15' max='45' />
+        </div>
+
 
 
         <!--PREDICTION BUTTON-->

@@ -75,29 +75,29 @@ class CustomData:
         p2_rank: int,
         p2_rank_points: int
     ):
-        self.tourney_id = tourney_id
-        self.surface = surface
-        self.draw_size = draw_size
-        self.tourney_level = tourney_level
-        self.tourney_date = tourney_date
-        self.p1_id = p1_id
+        self.tourney_id = tourney_id # could drop
+        self.surface = surface # could drop
+        self.draw_size = draw_size # could drop
+        self.tourney_level = tourney_level # could drop
+        self.tourney_date = tourney_date # could drop
+        self.p1_id = p1_id # could drop
         self.p1_seed = p1_seed
-        self.p1_ht = p1_ht
-        self.p1_age = p1_age
-        self.p2_id = p2_id
+        self.p1_ht = p1_ht # could drop
+        self.p1_age = p1_age # could drop
+        self.p2_id = p2_id # could drop
         self.p2_seed = p2_seed
-        self.p2_ht = p2_ht
-        self.p2_age = p2_age
-        self.best_of = best_of
-        self.round = round
+        self.p2_ht = p2_ht # could drop
+        self.p2_age = p2_age # could drop
+        self.best_of = best_of # could drop
+        self.round = round # could drop
         self.p1_ace = p1_ace
         self.p1_df = p1_df
         self.p1_svpt = p1_svpt
         self.p1_1stIn = p1_1stIn
         self.p1_1stWon = p1_1stWon
         self.p1_2ndWon = p1_2ndWon
-        self.p1_SvGms = p1_SvGms
-        self.p1_bpSaved = p1_bpSaved
+        self.p1_SvGms = p1_SvGms # could drop
+        self.p1_bpSaved = p1_bpSaved # could drop
         self.p1_bpFaced = p1_bpFaced
         self.p2_ace = p2_ace
         self.p2_df = p2_df
@@ -105,12 +105,12 @@ class CustomData:
         self.p2_1stIn = p2_1stIn
         self.p2_1stWon = p2_1stWon
         self.p2_2ndWon = p2_2ndWon
-        self.p2_SvGms = p2_SvGms
-        self.p2_bpSaved = p2_bpSaved
+        self.p2_SvGms = p2_SvGms # could drop
+        self.p2_bpSaved = p2_bpSaved # could drop
         self.p2_bpFaced = p2_bpFaced
-        self.p1_rank = p1_rank
+        self.p1_rank = p1_rank # could drop
         self.p1_rank_points = p1_rank_points
-        self.p2_rank = p2_rank
+        self.p2_rank = p2_rank # could drop
         self.p2_rank_points = p2_rank_points
 
     # Reformats custom data as Pandas DataFrame for backend
