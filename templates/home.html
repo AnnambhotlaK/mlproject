@@ -5,32 +5,19 @@
    
        <form action="{{ url_for('predict_datapoint')}}" method="post">
 
-        <!--TOURNEY_ID (+ SURFACE + DRAW_SIZE + TOURNEY_LEVEL + TOURNEY_DATE)-->
+        <!--TOURNEY_ID (+ SURFACE + DRAW_SIZE + TOURNEY_LEVEL + TOURNEY_DATE)
         <div class="mb-3">
             <label class="form-label">Tournament ID</label>
             <input class="form-control" type="number" name="tourney_id"
                 min='0' max='100' />
         </div>
+        -->
 
         <!--P1_SEED-->
         <div class="mb-3">
             <label class="form-label">Player 1 Seed</label>
             <input class="form-control" type="number" name="tourney_id"
                 min='1' max='32' />
-        </div>
-
-        <!--P1_HT-->
-        <div class="mb-3">
-            <label class="form-label">Player 1 Height (cm)</label>
-            <input class="form-control" type="number" name="p1_ht"
-                min='100' max='250' />
-        </div>
-
-        <!--P1_AGE-->
-        <div class="mb-3">
-            <label class="form-label">Player 1 Age</label>
-            <input class="form-control" type="number" name="p1_ht"
-                min='15' max='45' />
         </div>
 
         <!--P2_SEED-->
@@ -40,19 +27,102 @@
                 min='1' max='32' />
         </div>
 
-        <!--P2_HT-->
-        <div class="mb-3">
-            <label class="form-label">Player 2 Height (cm)</label>
-            <input class="form-control" type="number" name="p1_ht"
-                min='100' max='250' />
+        self.p1_1stWon = p1_1stWon
+        self.p1_2ndWon = p1_2ndWon
+
+        <!--ACES-->        
+        <div class="mb-3-group">
+            <!--P1_ACE-->
+            <div class="mb-3">
+                <label class="form-label">Player 1 Aces</label>
+                <input class="form-control" type="number" name="p1_ace"
+                    min='0' max='35' />
+            </div>
+
+            <!--P2_ACE-->
+            <div class="mb-3">
+                <label class="form-label">Player 2 Aces</label>
+                <input class="form-control" type="number" name="p1_ace"
+                    min='0' max='35' />
+            </div>
         </div>
 
-        <!--P2_AGE-->
-        <div class="mb-3">
-            <label class="form-label">Player 2 Age</label>
-            <input class="form-control" type="number" name="p1_ht"
-                min='15' max='45' />
+        <!--DOUBLE FAULTS-->        
+        <div class="mb-3-group">
+            <!--P1_DF-->
+            <div class="mb-3">
+                <label class="form-label">Player 1 Double Faults</label>
+                <input class="form-control" type="number" name="p1_df"
+                    min='0' max='35' />
+            </div>
+
+            <!--P2_DF-->
+            <div class="mb-3">
+                <label class="form-label">Player 2 Double Faults</label>
+                <input class="form-control" type="number" name="p2_df"
+                    min='0' max='35' />
+            </div>
         </div>
+
+        <!--SERVE PERCENTAGE-->
+        <div class="mb-3-group">
+            <!--P1_SVPT-->
+            <div class="mb-3">
+                <label class="form-label">Player 1 Serve Percentage</label>
+                <input class="form-control" type="number" name="p1_svpt"
+                    min='0' max='100' />
+            </div>
+
+            <!--P2_SVPT-->
+            <div class="mb-3">
+                <label class="form-label">Player 2 Serve Percentage</label>
+                <input class="form-control" type="number" name="p2_svpt"
+                    min='0' max='100' />
+                </div>
+            </div>
+        </div>
+
+        <!--FIRST SERVE IN %-->
+        <div class="mb-3-group">
+            <!--P1_1STIN-->
+            <div class="mb-3">
+                <label class="form-label">Player 1 First Serve In %</label>
+                <input class="form-control" type="number" name="p1_1stIn"
+                    min='0' max='100' />
+            </div>
+
+            <!--P2_1STIN-->
+            <div class="mb-3">
+                <label class="form-label">Player 2 First Serve In %</label>
+                <input class="form-control" type="number" name="p2_1stIn"
+                    min='0' max='100' />
+            </div>
+        </div>
+
+        <!--FIRST SERVE WON %-->
+
+        <div class="mb-3-group">
+            <!--P1_1STWON-->
+            <div class="mb-3">
+                <label class="form-label">Player 1 First Serve Won %</label>
+                <input class="form-control" type="number" name="p1_1stWon"
+                    min='0' max='100' />
+            </div>
+
+            <!--P2_1STWON-->
+            <div class="mb-3">
+                <label class="form-label">Player 2 First Serve In %</label>
+                <input class="form-control" type="number" name="p2_1stWon"
+                    min='0' max='100' />
+            </div>
+        </div>
+
+
+        
+
+        
+
+
 
 
 
