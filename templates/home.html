@@ -5,14 +5,6 @@
    
        <form action="{{ url_for('predict_datapoint')}}" method="post">
 
-        <!--TOURNEY_ID (+ SURFACE + DRAW_SIZE + TOURNEY_LEVEL + TOURNEY_DATE)
-        <div class="mb-3">
-            <label class="form-label">Tournament ID</label>
-            <input class="form-control" type="number" name="tourney_id"
-                min='0' max='100' />
-        </div>
-        -->
-
         <!--P1_SEED-->
         <div class="mb-3">
             <label class="form-label">Player 1 Seed</label>
@@ -27,8 +19,6 @@
                 min='1' max='32' />
         </div>
 
-        self.p1_1stWon = p1_1stWon
-        self.p1_2ndWon = p1_2ndWon
 
         <!--ACES-->        
         <div class="mb-3-group">
@@ -47,6 +37,7 @@
             </div>
         </div>
 
+
         <!--DOUBLE FAULTS-->        
         <div class="mb-3-group">
             <!--P1_DF-->
@@ -64,6 +55,7 @@
             </div>
         </div>
 
+
         <!--SERVE PERCENTAGE-->
         <div class="mb-3-group">
             <!--P1_SVPT-->
@@ -79,8 +71,8 @@
                 <input class="form-control" type="number" name="p2_svpt"
                     min='0' max='100' />
                 </div>
-            </div>
         </div>
+
 
         <!--FIRST SERVE IN %-->
         <div class="mb-3-group">
@@ -99,8 +91,8 @@
             </div>
         </div>
 
-        <!--FIRST SERVE WON %-->
 
+        <!--FIRST SERVE WON %-->
         <div class="mb-3-group">
             <!--P1_1STWON-->
             <div class="mb-3">
@@ -118,12 +110,57 @@
         </div>
 
 
-        
+        <!--SECOND SERVE WON %-->
+        <div class="mb-3-group">
+            <!--P1_2NDWON-->
+            <div class="mb-3">
+                <label class="form-label">Player 1 Second Serve Won %</label>
+                <input class="form-control" type="number" name="p1_2ndWon"
+                    min='0' max='100' />
+            </div>
 
-        
+            <!--P2_2NDWON-->
+            <div class="mb-3">
+                <label class="form-label">Player 2 Second Serve In %</label>
+                <input class="form-control" type="number" name="p2_2ndWon"
+                    min='0' max='100' />
+            </div>
+        </div>
 
 
+        <!--BREAK POINTS FACED-->
+        <div class="mb-3-group">
+            <!--P1_BPFACED-->
+            <div class="mb-3">
+                <label class="form-label">Player 1 Break Points Faced</label>
+                <input class="form-control" type="number" name="p1_bpFaced"
+                    min='0' max='30' />
+            </div>
 
+            <!--P2_2NDWON-->
+            <div class="mb-3">
+                <label class="form-label">Player 2 Break Points Faced</label>
+                <input class="form-control" type="number" name="p2_bpFaced"
+                    min='0' max='30' />
+            </div>
+        </div>
+
+
+        <!--RANKING POINTS-->
+        <div class="mb-3-group">
+            <!--P1_RANK_POINTS-->
+            <div class="mb-3">
+                <label class="form-label">Player 1 Ranking Points</label>
+                <input class="form-control" type="number" name="p1_rank_points"
+                    min='0' max='15000' />
+            </div>
+            <!--P2_RANK_POINTS-->
+            <div class="mb-3">
+                <label class="form-label">Player 2 Ranking Points</label>
+                <input class="form-control" type="number" name="p2_rank_points"
+                    min='0' max='15000' />
+            </div>
+        </div>
 
 
         <!--PREDICTION BUTTON-->
