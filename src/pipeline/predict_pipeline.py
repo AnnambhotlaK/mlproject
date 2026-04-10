@@ -25,16 +25,6 @@ class PredictPipeline:
 
 # CustomData maps inputs from frontend (app.py, html) to the backend (components) for predictions
 class CustomData:
-    # NEW CUSTOM DATA FIELDS:
-    '''
-    ['tourney_id', 'surface', 'draw_size', 'tourney_level', 'tourney_date',
-       'p1_id', 'p1_seed', 'p1_ht', 'p1_age', 'p2_id', 'p2_seed', 'p2_ht',
-       'p2_age', 'best_of', 'round', 'p1_ace', 'p1_df', 'p1_svpt', 'p1_1stIn',
-       'p1_1stWon', 'p1_2ndWon', 'p1_SvGms', 'p1_bpSaved', 'p1_bpFaced',
-       'p2_ace', 'p2_df', 'p2_svpt', 'p2_1stIn', 'p2_1stWon', 'p2_2ndWon',
-       'p2_SvGms', 'p2_bpSaved', 'p2_bpFaced', 'p1_rank', 'p1_rank_points',
-       'p2_rank', 'p2_rank_points']
-    '''
     def __init__(
         self,
         #tourney_id: str,
@@ -43,11 +33,11 @@ class CustomData:
         #tourney_level: str,
         #tourney_date: int,
         #p1_id: int,
-        p1_seed: str,
+        p1_seed: int,
         #p1_ht: int,
         #p1_age: int,
         #p2_id: int,
-        p2_seed: str,
+        p2_seed: int,
         #p2_ht: int,
         #p2_age: int,
         #best_of: int,
