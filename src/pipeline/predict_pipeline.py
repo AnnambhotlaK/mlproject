@@ -44,7 +44,7 @@ class CustomData:
         #round: str,
         p1_ace: int,
         p1_df: int,
-        p1_svpt: int,
+        #p1_svpt: int,
         p1_1stIn: int,
         p1_1stWon: int,
         p1_2ndWon: int,
@@ -53,7 +53,7 @@ class CustomData:
         p1_bpFaced: int,
         p2_ace: int,
         p2_df: int,
-        p2_svpt: int,
+        #p2_svpt: int,
         p2_1stIn: int,
         p2_1stWon: int,
         p2_2ndWon: int,
@@ -82,7 +82,7 @@ class CustomData:
         #self.round = round # could drop
         self.p1_ace = p1_ace
         self.p1_df = p1_df
-        self.p1_svpt = p1_svpt
+        #self.p1_svpt = p1_svpt
         self.p1_1stIn = p1_1stIn
         self.p1_1stWon = p1_1stWon
         self.p1_2ndWon = p1_2ndWon
@@ -91,7 +91,7 @@ class CustomData:
         self.p1_bpFaced = p1_bpFaced
         self.p2_ace = p2_ace
         self.p2_df = p2_df
-        self.p2_svpt = p2_svpt
+        #self.p2_svpt = p2_svpt
         self.p2_1stIn = p2_1stIn
         self.p2_1stWon = p2_1stWon
         self.p2_2ndWon = p2_2ndWon
@@ -124,7 +124,7 @@ class CustomData:
                 #"round": [self.round],
                 "p1_ace": [self.p1_ace],
                 "p1_df": [self.p1_df],
-                "p1_svpt": [self.p1_svpt],
+                #"p1_svpt": [self.p1_svpt],
                 "p1_1stIn": [self.p1_1stIn],
                 "p1_1stWon": [self.p1_1stWon],
                 "p1_2ndWon": [self.p1_2ndWon],
@@ -133,7 +133,7 @@ class CustomData:
                 "p1_bpFaced": [self.p1_bpFaced],
                 "p2_ace": [self.p2_ace],
                 "p2_df": [self.p2_df],
-                "p2_svpt": [self.p2_svpt],
+                #"p2_svpt": [self.p2_svpt],
                 "p2_1stIn": [self.p2_1stIn],
                 "p2_1stWon": [self.p2_1stWon],
                 "p2_2ndWon": [self.p2_2ndWon],
