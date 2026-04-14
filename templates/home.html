@@ -6,19 +6,20 @@
        <form action="{{ url_for('predict_datapoint')}}" method="post">
 
         <!--P1_SEED-->
-        <div class="mb-3">
-            <label class="form-label">Player 1 Seed</label>
-            <input class="form-control" type="number" name="tourney_id" value="1"
-                min='1' max='32' />
-        </div>
+        <div class="mb-3-group">
+            <div class="mb-3">
+                <label class="form-label">Player 1 Seed</label>
+                <input class="form-control" type="number" name="p1_seed" value="1"
+                    min='1' max='32' />
+            </div>
 
-        <!--P2_SEED-->
-        <div class="mb-3">
-            <label class="form-label">Player 2 Seed</label>
-            <input class="form-control" type="number" name="tourney_id" value="3"
-                min='1' max='32' />
+            <!--P2_SEED-->
+            <div class="mb-3">
+                <label class="form-label">Player 2 Seed</label>
+                <input class="form-control" type="number" name="p2_seed" value="3"
+                    min='1' max='32' />
+            </div>
         </div>
-
 
         <!--ACES-->        
         <div class="mb-3-group">
@@ -32,7 +33,7 @@
             <!--P2_ACE-->
             <div class="mb-3">
                 <label class="form-label">Player 2 Aces</label>
-                <input class="form-control" type="number" name="p1_ace" value="12"
+                <input class="form-control" type="number" name="p2_ace" value="12"
                     min='0' max='35' />
             </div>
         </div>
@@ -102,7 +103,7 @@
 
             <!--P2_2NDWON-->
             <div class="mb-3">
-                <label class="form-label">Player 2 Second Serve In %</label>
+                <label class="form-label">Player 2 Second Serve Won %</label>
                 <input class="form-control" type="number" name="p2_2ndWon" value="74"
                     min='0' max='100' />
             </div>
@@ -153,7 +154,7 @@
 
     <!--PREDICTION OUTPUT-->
     <h2>
-       Your predicted winner is: {{prediction}}
+       Prediction: {{prediction * 100 | round(2)}}
     </h2>
     
    <body>
