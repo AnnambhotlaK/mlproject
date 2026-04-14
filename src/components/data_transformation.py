@@ -152,7 +152,7 @@ class DataTransformation:
         We have 14 categorical features: ['tourney_id', 'tourney_name', 'surface', 'tourney_level', 'winner_entry', 'winner_name', 'winner_hand', 'winner_ioc', 'loser_entry', 'loser_name', 'loser_hand', 'loser_ioc', 'score', 'round']
         '''
         columns_to_drop = ['draw_size', 'tourney_date', 'match_num', 'winner_id', 'winner_ht', 'winner_age', 'loser_id', 'loser_ht', 'loser_age']        
-        columns_to_drop += ['best_of', 'minutes', 'w_SvGms', 'w_bpSaved', 'w_svpt', 'l_SvGms', 'l_bpSaved', 'l_svpt' 'winner_rank', 'loser_rank']
+        columns_to_drop += ['best_of', 'minutes', 'w_SvGms', 'w_bpSaved', 'w_svpt', 'l_SvGms', 'l_bpSaved', 'l_svpt', 'winner_rank', 'loser_rank']
         columns_to_drop += ['tourney_id', 'tourney_name', 'surface', 'tourney_level', 'winner_entry', 'winner_name', 'winner_hand', 'winner_ioc', 'loser_entry', 'loser_name', 'loser_hand', 'loser_ioc', 'score', 'round']
         df = df.drop(columns=columns_to_drop)
         return df
