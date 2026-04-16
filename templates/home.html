@@ -1,4 +1,9 @@
 <html>
+<head>
+    <title>WTA Match Winner Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
 <body>
     <div class="login">
        <h1>WTA Match Winner Predictor</h1>
@@ -154,7 +159,7 @@
 
     <!--PREDICTION OUTPUT-->
     <h2>
-       Prediction: {{prediction * 100 | round(2)}}
+       Prediction: <span id="prediction-value">{{prediction}}</span>%
     </h2>
     
    <body>
