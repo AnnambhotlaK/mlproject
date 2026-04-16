@@ -70,7 +70,12 @@ def predict_datapoint():
         predict_pipeline = PredictPipeline()
         predictions = predict_pipeline.predict(prediction_df)
         # 'prediction' is the predicted score given to the frontend in home.html
-        return render_template('home.html', prediction = predictions[0])
+        prediction_percentage = predictions[0]
+        if prediction_percentage > 50:
+            interpretation = f'Player 2 is favored to win by {prediction_percentage - 50:.2f}%.'
+        else:
+            interpretation = f'Player 1 is favored to win by {50 - prediction_percentage:.2f}%.'
+        return render_template('home.html', prediction=predictions[0], interpretation=interpretation)
     
 if __name__ == "__main__":
     app.run()
