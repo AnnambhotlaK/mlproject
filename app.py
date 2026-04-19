@@ -65,7 +65,7 @@ def predict_datapoint():
 
         prediction_df = data.get_data_as_dataframe()
         # View pred_df in console
-        print(prediction_df)
+        #print(prediction_df)
 
         predict_pipeline = PredictPipeline()
         predictions = predict_pipeline.predict(prediction_df)
