@@ -14,14 +14,20 @@ function formatPredictionAsPercentage() {
 // Function to interpret prediction as who will win the match (player 1 or 2)
 function interpretPrediction() {
     const predictionElement = document.getElementById('prediction-value');
-    if (predictionElement) {
-        const predictionValue = parseFloat(predictionElement.textContent);
-        const percentageValue = (predictionValue * 100).toFixed(2);
-        if (percentageValue > 50) {
-            document.getElementById('interpretation').textContent = 'Player 2 is favored to win by ' + (percentageValue - 50) + '%';
-        }
-        else {
-            document.getElementById('interpretation').textContent = 'Player 1 is favored to win by ' + (50 - percentageValue) + '%';
+    const interpretationElement = document.getElementById('interpretation');
+    
+    if (predictionElement && interpretationElement) {
+        const predictionPercentage = parseFloat(predictionElement.textContent);
+        
+        if (!isNaN(predictionPercentage)) {
+            console.log('Prediction percentage:', predictionPercentage);
+            
+            if (predictionPercentage > 50) {
+                interpretationElement.textContent = 'Player 2 is favored to win by ' + (predictionPercentage - 50).toFixed(2)
+            } else {
+                interpretationElement.textContent = 'Player 1 is favored to win by ' + (50 - predictionPercentage).toFixed(2)
+            }
+            interpretationElement.textContent += '%.';
         }
     }
 }
