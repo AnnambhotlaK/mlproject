@@ -244,8 +244,8 @@ class WTADataFetcher:
         surface     : str  optional filter: "Hard", "Clay", "Grass", "Carpet"
         """
         df = self._flatten_player_perspective(player_name)
-        #if surface:
-        #    df = df[df["surface"].str.lower() == surface.lower()]
+        if surface:
+            df = df[df["surface"].str.lower() == surface.lower()]
         return df.tail(n).reset_index(drop=True)
 
     def get_player_stats(self, player_name: str, surface: str = None,
@@ -412,32 +412,33 @@ def main():
     print("\n" + "=" * 60)
     print("EXAMPLE 1 - Recent 10 matches for Iga Swiatek (Clay)")
     print("=" * 60)
-    recent = fetcher.get_recent_matches("Swiatek I.", n=10, surface="Clay")
+    recent = fetcher.get_recent_matches("Iga Swiatek", n=10, surface="Clay")
     print(recent[["date", "tourney", "opponent", "won", "p_1stServeIn_pct", "p_1stServeWon_pct", "p_bpSaved_pct"]].to_string(index=False))
+    print(recent.head())
 
     print("\n" + "=" * 60)
     print("EXAMPLE 2 – Player stats for Aryna Sabalenka (Hard)")
     print("=" * 60)
-    stats = fetcher.get_player_stats("Sabalenka A.", surface="Hard")
+    stats = fetcher.get_player_stats("Aryna Sabalenka", surface="Hard")
     for k, v in stats.items():
         print(f"  {k:35s}: {v}")
 
     print("\n" + "=" * 60)
-    print("EXAMPLE 3 – Head-to-head: Swiatek vs Sabalenka")
+    print("EXAMPLE 3 – Head-to-head: Iga Swiatek vs Aryna Sabalenka")
     print("=" * 60)
-    h2h = fetcher.get_head_to_head("Swiatek I.", "Sabalenka A.")
+    h2h = fetcher.get_head_to_head("Iga Swiatek", "Aryna Sabalenka")
     print(f"  Total matches : {h2h['total_matches']}")
-    print(f"  Swiatek wins  : {h2h['Swiatek I._wins']}")
-    print(f"  Sabalenka wins: {h2h['Sabalenka A._wins']}")
+    print(f"  Iga Swiatek wins  : {h2h['Iga Swiatek_wins']}")
+    print(f"  Aryna Sabalenka wins: {h2h['Aryna Sabalenka_wins']}")
     print("  Match history:")
     for m in h2h["matches"][-5:]:   # last 5
         print(f"    {str(m['tourney_date'])[:10]}  {m['tourney_name']:30s}"
               f"  {m['surface']:5s}  {m['winner_name']} def. {m['loser_name']}  {m['score']}")
 
     print("\n" + "=" * 60)
-    print("EXAMPLE 4 – Pre-match feature vector (Swiatek vs Sabalenka, Clay)")
+    print("EXAMPLE 4 – Pre-match feature vector (Iga Swiatek vs Aryna Sabalenka, Clay)")
     print("=" * 60)
-    features = fetcher.get_pre_match_features("Swiatek I.", "Sabalenka A.", surface="Clay")
+    features = fetcher.get_pre_match_features("Iga Swiatek", "Aryna Sabalenka", surface="Clay")
     for k, v in features.items():
         print(f"  {k:40s}: {v}")
 
