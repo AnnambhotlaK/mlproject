@@ -244,8 +244,8 @@ class WTADataFetcher:
         surface     : str  optional filter: "Hard", "Clay", "Grass", "Carpet"
         """
         df = self._flatten_player_perspective(player_name)
-        if surface:
-            df = df[df["surface"].str.lower() == surface.lower()]
+        #if surface:
+        #    df = df[df["surface"].str.lower() == surface.lower()]
         return df.tail(n).reset_index(drop=True)
 
     def get_player_stats(self, player_name: str, surface: str = None,
@@ -405,16 +405,15 @@ class WTADataFetcher:
 # ---------------------------------------------------------------------------
 
 def main():
-    # ---- Load last 3 years of data ----------------------------------------
-    fetcher = WTADataFetcher(years=[2023, 2024, 2025])
+    # ---- Load last 3 years of data (exclude 2025 not used) ----------------------------------------
+    fetcher = WTADataFetcher(years=[2022, 2023, 2024])
     fetcher.load_data()
 
     print("\n" + "=" * 60)
-    print("EXAMPLE 1 – Recent 10 matches for Iga Swiatek (Clay)")
+    print("EXAMPLE 1 - Recent 10 matches for Iga Swiatek (Clay)")
     print("=" * 60)
     recent = fetcher.get_recent_matches("Swiatek I.", n=10, surface="Clay")
-    print(recent[["date", "tourney", "opponent", "won", "p_1stServeIn_pct",
-                  "p_1stServeWon_pct", "p_bpSaved_pct"]].to_string(index=False))
+    print(recent[["date", "tourney", "opponent", "won", "p_1stServeIn_pct", "p_1stServeWon_pct", "p_bpSaved_pct"]].to_string(index=False))
 
     print("\n" + "=" * 60)
     print("EXAMPLE 2 – Player stats for Aryna Sabalenka (Hard)")
