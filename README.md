@@ -1,10 +1,10 @@
 # WTA Match Predictor
 
-A sorting algorithm visualizer written in TypeScript and powered by React.
+An end-to-end machine learning project to predict the winner of a WTA tennis match.
 
 ## Description
 
-SortLite is a minimalistic sorting algorithm visualizer. Users can generate random arrays and observe how various sorting algorithms work in real time. Algorithms range from slower implementations like bubble sort or selection sort to fast implementations like Quicksort and merge sort. Users can also change the size of the array and the speed of the animations, and can also interrupt algorithms at any point in the animation process.
+This project walks through a complete ML pipeline, from raw data collection and cleaning to feature engineering, model training, and evaluation, using historical WTA match data from [Jeff Sackmann](https://github.com/JeffSackmann/tennis_wta). The goal is to predict which player will win a given matchup using various key match performance statistics, including serve percentages, aces/double faults, and break point conversions.
 
 ## Getting Started
 
